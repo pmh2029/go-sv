@@ -1,9 +1,14 @@
-FROM golang:1.21.3-alpine3.18
+FROM golang:1.21.3-alpine3.18 AS builder
 
-WORKDIR /go/src/app
+WORKDIR /app
 
 COPY . .
+RUN go mod tidy
 
 RUN go build -o main main.go
 
-CMD ["./main"]
+FROM alpine:latest AS runner
+WORKDIR /app/
+COPY --from=builder /app/go-demo .
+EXPOSE 8080
+ENTRYPOINT ["./main"]
