@@ -9,6 +9,6 @@ RUN go build -o main main.go
 
 FROM alpine:latest AS runner
 WORKDIR /app/
-COPY --from=builder /app/go-demo .
+COPY --from=builder /app/server .
 EXPOSE 8080
 ENTRYPOINT ["./main"]
