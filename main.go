@@ -36,7 +36,7 @@ func main() {
 
 	v1 := router.Group("/v1")
 	{
-		v1.GET("", ping())
+		v1.GET("/", ping())
 		v1.POST("/items", createItem(db))           // create item
 		v1.GET("/items", getListOfItems(db))        // list items
 		v1.GET("/items/:id", readItemById(db))      // get an item by ID
