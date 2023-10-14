@@ -1,4 +1,9 @@
-on: push
+name: ci
+
+on: 
+  push:
+    branches: main
+
 jobs: 
   build:
     name: build stage
@@ -7,7 +12,7 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v3
       - name: login to docker hub
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with: 
           username: $ {{ sercrets.DOCKER_USERNAME }}
           password: $ {{ sercrets.DOCKER_TOKEN }}
